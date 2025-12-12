@@ -6,7 +6,6 @@ import android.os.Build
 import android.util.Base64
 import android.util.Log
 import com.imp.fluffymood.BuildConfig
-import com.imp.fluffymood.firebase.FirebaseUtils
 import com.kakao.vectormap.KakaoMapSdk
 import dagger.hilt.android.HiltAndroidApp
 import java.security.MessageDigest
@@ -31,9 +30,6 @@ class AppModule: Application() {
 
             /** Initialize Kakao Map Api */
             KakaoMapSdk.init(this, BuildConfig.KAKAO_API_KEY)
-
-            /** Initialize Firebase Token */
-            FirebaseUtils.initFirebaseToken(it)
         }
     }
 

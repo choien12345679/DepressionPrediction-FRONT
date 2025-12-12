@@ -116,7 +116,10 @@ class MemberRepositoryImpl @Inject constructor() : MemberRepository {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiMember::class.java)
-            .search(key = BuildConfig.KAKAO_REST_API_KEY, query = search)
+            .search(
+                key = "KakaoAK ${BuildConfig.KAKAO_REST_API_KEY}",
+                query = search
+            )
             .enqueue(object: Callback<AddressModel> {
                 override fun onResponse(call: Call<AddressModel>, response: Response<AddressModel>) {
 

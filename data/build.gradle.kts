@@ -3,39 +3,48 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.googleDevtoolsKsp)
+    alias(libs.plugins.kotlinKapt)
     id(libs.plugins.daggerHiltAndroidPlugin.get().pluginId)
 }
 
+// 1. local.properties 파일 안전하게 불러오기
 val properties = Properties()
-properties.load(project.rootProject.file("local.properties").inputStream())
+val localPropertiesFile = project.rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    properties.load(localPropertiesFile.inputStream())
+}
 
 android {
-
     namespace = "com.imp.data"
     compileSdk = 34
 
     defaultConfig {
-
         minSdk = 26
         consumerProguardFiles("consumer-rules.pro")
 
-        buildConfigField("String", "KAKAO_REST_API_KEY", properties["kakao_rest_api_key"].toString())
-        buildConfigField("String", "SERVICE_SERVER_HOST", properties["service_server_host"].toString())
-        buildConfigField("String","DEV_SERVER_HOST", properties["dev_server_host"].toString())
-        buildConfigField("String","CHAT_SERVER_HOST", properties["chat_server_host"].toString())
+        // 2. [핵심 수정] 값을 읽어와서 앞뒤에 따옴표(\")를 붙여줍니다.
+        // 이렇게 해야 자바 코드에서 String으로 정상 인식됩니다.
+
+        val kakaoKey = properties.getProperty("kakao_rest_api_key") ?: ""
+        buildConfigField("String", "KAKAO_REST_API_KEY", "\"$kakaoKey\"")
+
+        val serviceHost = properties.getProperty("service_server_host") ?: ""
+        buildConfigField("String", "SERVICE_SERVER_HOST", "\"$serviceHost\"")
+
+        val devHost = properties.getProperty("dev_server_host") ?: ""
+        buildConfigField("String", "DEV_SERVER_HOST", "\"$devHost\"")
+
+        val chatHost = properties.getProperty("chat_server_host") ?: ""
+        buildConfigField("String", "CHAT_SERVER_HOST", "\"$chatHost\"")
     }
 
     buildTypes {
-
         debug {
-
             isShrinkResources = false
             isMinifyEnabled = false
         }
 
         release {
-
             isShrinkResources = false
             isMinifyEnabled = false
             proguardFiles(
@@ -55,7 +64,6 @@ android {
     }
 
     packaging {
-
         resources.excludes.add("META-INF/*")
         resources.excludes.add("META-INF/DEPENDENCIES")
         resources.excludes.add("META-INF/NOTICE")
@@ -71,7 +79,6 @@ android {
 }
 
 dependencies {
-
     /** Multi Module */
     implementation(project(":domain"))
 
@@ -82,7 +89,7 @@ dependencies {
 
     /** Hilt */
     implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
+    kapt(libs.hilt.android.compiler)
 
     /** lifeCycle */
     implementation(libs.bundles.lifecycle)
@@ -118,4 +125,8 @@ dependencies {
 
     /** GPS */
     implementation(libs.play.services.location)
+
+    /** ML - Smile */
+    implementation(libs.smile.core)
+    implementation(libs.smile.data)
 }

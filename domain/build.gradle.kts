@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.googleDevtoolsKsp)
+    alias(libs.plugins.kotlinKapt)
     id(libs.plugins.daggerHiltAndroidPlugin.get().pluginId)
 }
 
@@ -24,5 +24,5 @@ dependencies {
 
     /** Hilt */
     implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
+    kapt(libs.hilt.android.compiler)
 }

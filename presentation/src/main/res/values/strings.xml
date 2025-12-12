@@ -142,6 +142,18 @@
     <string name="analysis_text_35">신체적 활동과 운동이 행복에 미치는 영향을 점수로 나타냅니다. 점수가 높을수록 활동량이 높다는 것입니다. 이는 우울감을 줄이는 데 도움이 됩니다.</string>
     <string name="analysis_text_36">일상에서 다양한 장소를 방문하는 빈도를 점수로 나타냅니다. 점수가 높다는 것은 다양한 장소를 방문하고 있다는 것입니다. 다양한 장소를 방문하는것은 새로운 경험을 제공하고 사회적 관계를 확장하는데 도움이 됩니다.</string>
     <string name="analysis_text_37">빛에 얼마나 노출되는지를 점수로 나타냅니다. 점수가 높을수록 빛을 많이 받은것입니다. 빛에 노출되는것은 멜라토닌 분비를 조절하여 기분을 좋게 하며 에너지를 높이는데 도움이 됩니다.</string>
+    <string name="daily_life_pattern_title">일상 패턴</string>
+    <string name="daily_life_pattern_description">daily_life_pattern 테이블의 데이터와 추론 결과를 확인할 수 있습니다.</string>
+    <string name="daily_life_pattern_data_title">패턴 데이터</string>
+    <string name="daily_life_pattern_inference_title">추론 결과</string>
+    <string name="daily_life_pattern_empty">데이터가 없습니다. 조회 후 확인해 주세요.</string>
+    <string name="daily_life_pattern_saved">추론 결과를 저장했습니다.</string>
+    <string name="today_depression_title">어제의 우울 점수</string>
+    <string name="today_depression_score_placeholder">어제의 우울 점수를 불러오는 중...</string>
+    <string name="today_depression_score_fmt">어제의 우울 점수는 %1$.0f점이에요!</string>
+    <string name="today_depression_date_fmt">%1$s 기준</string>
+    <string name="previous_depression_title">이전 우울 점수 확인하기</string>
+    <string name="depression_score_empty">이전 우울 점수 데이터가 없습니다.</string>
 
     <!-- Main - Chat -->
     <string name="chat_text_1">새로운 채팅을 생성하시겠습니까?</string>
@@ -186,10 +198,10 @@
     <!-- unit -->
     <string name="unit_happy_score">%d/100점</string>
     <string name="unit_analysis_score">%d/100</string>
-    <string name="unit_hour_minute">%d시간 %d분</string>
+    <string name="unit_hour_minute">%1$d시간 %2$d분</string>
     <string name="unit_times">%d번</string>
     <string name="unit_count">%d회</string>
     <string name="unit_steps">%s걸음</string>
-    <string name="unit_light">%s (%d lux)</string>
+    <string name="unit_light">%1$s (%2$d lux)</string>
 
 </resources>

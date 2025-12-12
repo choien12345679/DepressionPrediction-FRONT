@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,android,androidstudio,java,kotlin
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,android,androidstudio,java,kotlin
 
+#Learning Data
+presentation/src/main/assets/dlp_labeled.csv
+
 ### Android ###
 # Gradle files
 .gradle/

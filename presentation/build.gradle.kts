@@ -3,35 +3,37 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.googleDevtoolsKsp)
+    alias(libs.plugins.kotlinKapt)
     id(libs.plugins.daggerHiltAndroidPlugin.get().pluginId)
 }
 
+// 1. local.properties 파일 안전하게 불러오기
 val properties = Properties()
-properties.load(project.rootProject.file("local.properties").inputStream())
+val localPropertiesFile = project.rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    properties.load(localPropertiesFile.inputStream())
+}
 
 android {
     namespace = "com.imp.presentation"
     compileSdk = 34
 
     defaultConfig {
-
         minSdk = 26
         consumerProguardFiles("consumer-rules.pro")
 
-        buildConfigField("String","CHATTING_SERVER_HOST", properties["chatting_server_host"].toString())
+        // 2. [핵심 수정] 값을 읽어와서 앞뒤에 따옴표(\")를 붙여줍니다.
+        val chattingHost = properties.getProperty("chatting_server_host") ?: ""
+        buildConfigField("String", "CHATTING_SERVER_HOST", "\"$chattingHost\"")
     }
 
     buildTypes {
-
         debug {
-
             isShrinkResources = false
             isMinifyEnabled = false
         }
 
         release {
-
             isShrinkResources = false
             isMinifyEnabled = false
             proguardFiles(
@@ -53,7 +55,6 @@ android {
     }
 
     packaging {
-
         resources.excludes.add("META-INF/*")
         resources.excludes.add("META-INF/DEPENDENCIES")
         resources.excludes.add("META-INF/NOTICE")
@@ -91,7 +92,7 @@ dependencies {
 
     /** Hilt */
     implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
+    kapt(libs.hilt.android.compiler)
 
     /** lifeCycle */
     implementation(libs.bundles.lifecycle)
@@ -126,10 +127,6 @@ dependencies {
 
     /**
      * Indicator SeekBar
-     *
-     *  - Could not HEAD 'https://jitpack.io/com/github/warkiz/widget/indicatorseekbar/2.1.2/indicatorseekbar-2.1.2.pom'.
-     *  - Received status code 401 from server: Unauthorized
-     *  - The solution is to use v2.1.1 instead of v2.1.2.
      */
     implementation("com.github.warkiz:IndicatorSeekBar:v2.1.1")
 

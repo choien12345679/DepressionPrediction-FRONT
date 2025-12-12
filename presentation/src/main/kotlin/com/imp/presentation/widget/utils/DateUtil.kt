@@ -27,7 +27,19 @@ class DateUtil {
         fun getCurrentDate(): String {
 
             val calendar = Calendar.getInstance()
-            val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+            return dateFormat.format(calendar.time)
+        }
+
+        /**
+         * Get Yesterday Date (yyyy-MM-dd)
+         */
+        fun getYesterdayDate(): String {
+
+            val calendar = Calendar.getInstance()
+            calendar.add(Calendar.DAY_OF_MONTH, -1)
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
             return dateFormat.format(calendar.time)
         }

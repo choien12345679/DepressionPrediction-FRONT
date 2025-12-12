@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/log"
-        android:name="com.imp.presentation.view.main.fragment.FrgAnalysis"
+        android:name="com.imp.presentation.view.pattern.FrgDailyLifePattern"
         android:label="LOG"
-        tools:layout="@layout/frg_analysis" />
+        tools:layout="@layout/frg_daily_life_pattern" />
 
     <fragment
         android:id="@+id/chat"

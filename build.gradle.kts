@@ -7,7 +7,6 @@ buildscript {
     dependencies {
         classpath(libs.gradle)
         classpath(libs.hilt.android.gradle.plugin)
-        classpath(libs.google.services)
     }
 }
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -15,8 +14,7 @@ plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     alias(libs.plugins.jetbrainsKotlinParcelize) apply false
-    alias(libs.plugins.googleDevtoolsKsp) apply false
-    alias(libs.plugins.googleService) apply false
+    alias(libs.plugins.kotlinKapt) apply false
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.jetbrainsKotlinJvm) apply false
 }
